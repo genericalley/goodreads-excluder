@@ -1,0 +1,74 @@
+<style>
+    .container, .genres {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .genres {
+        height: 100px;
+        margin-bottom: 25px;
+    }
+
+    .book {
+        flex-basis: 25%;
+    }
+
+    .include-type {
+        flex-basis: 50%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .footer {
+        text-align: center;
+    }
+
+    .cover {
+        height: 100px;
+        width: auto;
+    }
+
+    h3 {
+        flex-basis: 25%;
+    }
+
+    p {
+        flex-grow: 1;
+    }
+</style>
+
+<html>
+    <header>
+        <title>New Releases on Goodreads, by Genre</title>
+    </header>
+    <body>
+        <div class="genres">
+            <div class="include-type">
+                <h3>Included:</h3>
+                <p>{{ included }}</p>
+            </div>
+            <div class="include-type">
+                <h3>Excluded:</h3>
+                <p>{{ excluded }}</p>
+            </div>
+        </div>
+        <div class="container">
+            {% for book in books %}
+                <div class="book">
+                    <a href="{{book.url}}">
+                        <img src="{{book.image_url}}" class="cover"/>
+                    </a>
+                    <div class="title">{{book.title}}</div>
+                    <div class="author">{{book.author}}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="footer">
+            <a href="https://goodreads.com">
+                <img src="./goodreads-logo.png">
+            </a>
+        </div>
+    </body>
+</html>
